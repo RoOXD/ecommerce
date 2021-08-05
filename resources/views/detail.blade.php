@@ -8,6 +8,7 @@
         * {
             box-sizing: border-box;
             font-family: Calibri;
+            padding-left: 15px ;
         }
 
 
@@ -48,6 +49,7 @@
         <img src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png" width="150"
              height="150">
         <p align="center">{{$product->price}} RON</p>
+        <p align="center">{{$product->description}}</p>
         <div class="center">
             <button class="btn btn-primary">Adauga in cos</button>
         </div>
