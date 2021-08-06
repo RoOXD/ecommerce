@@ -16,7 +16,7 @@
 <div class="topnav">
     <a href="/">Pagina principala</a>
     <div class="topnav-right">
-        <a href="#search">Login</a>
+        {{--        <a href="#search">Login</a>--}}
         <a href="{{route('product.shoppingCart')}}">
             Cos de cumparaturi
             <span class="badge badge-secondary">{{Session::has('cart')? Session::get('cart')->totalQty:''}}</span>

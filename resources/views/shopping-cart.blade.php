@@ -46,10 +46,11 @@
                     @foreach($products as $product)
                         <li class="list-group-item">
                             <strong>{{$product['item']['name']}}</strong>
-                            <button type="button" class="btn btn-info" name="increment-btn">+</button>
-                            <span class="badge-pill">{{$product['qty']}}x buc</span>
-                            <button type="button" class="btn btn-info" name="decrement-btn">-</button>
+                            <button type="button" class="btn btn-info" name="inc-btn">+</button>
+                            <span class="badge-pill">{{$product['qty']}} x buc</span>
+                            <button type="button" class="btn btn-info" name="dec-btn">-</button>
                             <span class="label label-success">{{$product['price']}} RON</span>
+                            <button type="button" class="btn btn-info" name="del-btn">Sterge</button>
                         </li>
                     @endforeach
                 </ul>

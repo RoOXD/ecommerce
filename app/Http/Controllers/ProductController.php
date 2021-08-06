@@ -53,4 +53,5 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+
 }
