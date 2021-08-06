@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductController extends Controller
 {
     public function store()
     {
-
         $params = request()->validate([
             'name' => 'required|max:255|unique:products',
             'description' => 'required',
@@ -17,10 +18,10 @@ class ProductController extends Controller
         ]);
 
         Product::create($params);
-        return redirect('/');
+        return redirect('/')->with('success', 'Produsul a fost adaugat cu succes!');
     }
 
-    function show()
+    public function show()
     {
         $data = Product::all();
         return view('index', ['products' => $data]);
@@ -30,5 +31,15 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         return view('detail', ['product' => $product]);
+    }
+
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+        $request->session()->put('cart', $cart);
+        return redirect()->route('index');
     }
 }

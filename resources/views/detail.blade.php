@@ -8,7 +8,6 @@
         * {
             box-sizing: border-box;
             font-family: Calibri;
-            padding-left: 15px ;
         }
 
 
@@ -37,10 +36,38 @@
             align-items: center;
             padding-bottom: 20px;
         }
+
+        .topnav {
+            overflow: hidden;
+            background-color: lightgray;
+        }
+
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .topnav a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .topnav-right {
+            float: right;
+        }
     </style>
 </head>
 <body>
-
+<x-nav-component></x-nav-component>
 <h2>Pagina Produs</h2>
 
 <div class="row">

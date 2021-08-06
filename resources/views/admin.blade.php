@@ -46,7 +46,6 @@
 
         <input type="submit" name="submit" value="Adauga" class="btn btn-primary">
     </div>
-
 </form>
 </body>
 </html>

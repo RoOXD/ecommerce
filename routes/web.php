@@ -30,3 +30,7 @@ Route::get('/detail/{prod}', function ($id) {
         'product' => Product::findOrFail($id)
     ]);
 });
+Route::get('/add-to-cart/{id}', [
+    'uses' => 'ProductController@getAddToCart',
+    'as' => 'product.addToCart'
+]);
