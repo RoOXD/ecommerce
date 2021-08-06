@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -28,6 +28,15 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .alert {
+            position: fixed;
+            bottom: 0;
+            right: 5px;
+            background: #3c3cff;
+            color: white;
+            border-radius: 25px;
         }
 
         .center {
@@ -69,7 +78,14 @@
 <body>
 <x-nav-component></x-nav-component>
 <h2>Pagina Produs</h2>
-
+@if(session()->has('message'))
+    <div x-data="{show:true}"
+         x-init="setTimeout(()=>show=false,4000)"
+         x-show="show"
+         class="alert">
+        <p>{{session('message')}}</p>
+    </div>
+@endif
 <div class="row">
     <div class="column" style="background-color:lightgray; margin: 5px; border-radius: 25px;">
         <h2 align="center">{{$product->name}}</h2>
@@ -78,7 +94,9 @@
         <p align="center">{{$product->price}} RON</p>
         <p align="center">{{$product->description}}</p>
         <div class="center">
-            <button class="btn btn-primary">Adauga in cos</button>
+            <a href="{{route('product.addToCart',['id'=>$product->id])}}">
+                <button class="btn btn-primary">Adauga in cos</button>
+            </a>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,6 +72,20 @@
         .topnav-right {
             float: right;
         }
+
+        .badge {
+            display: inline-block;
+            padding: .35em .65em;
+            font-size: .75em;
+            font-weight: 700;
+            line-height: 1;
+            color: white;
+            background: #3c3cff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +100,14 @@
          x-show="show"
          class="alert">
         <p>{{session('success')}}</p>
+    </div>
+@endif
+@if(session()->has('message'))
+    <div x-data="{show:true}"
+         x-init="setTimeout(()=>show=false,4000)"
+         x-show="show"
+         class="alert">
+        <p>{{session('message')}}</p>
     </div>
 @endif
 <div class="row">
