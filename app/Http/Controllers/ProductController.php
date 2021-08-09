@@ -71,16 +71,28 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty'=>$cart->totalQty]);
+        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty]);
     }
 
-    public function getCheckout(){
+    public function getCheckout()
+    {
         if (!Session::has('cart')) {
             return view('shopping-cart');
         }
-        $oldCart=Session::get('cart');
-        $cart=new Cart($oldCart);
-        $total=$cart->totalPrice;
-        return view('checkout',['total'=>$total]);
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+        return view('checkout', ['total' => $total]);
+    }
+
+    public function postCheckout()
+    {
+        if (!Session::has('cart')) {
+            return redirect('/');
+        }
+
+        Session::forget('cart');
+
+        return redirect('/')->with('success', 'Comanda plasata cu succes!');
     }
 }

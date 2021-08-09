@@ -61,7 +61,7 @@
                                 <span class="label label-success">{{$product['price']}} RON</span>
 
                                 <a type="button" class="btn btn-info" name="del-btn"
-                                        href="{{route('product.removeAllFromCart',['id'=>$product['item']['id']])}}">Sterge
+                                   href="{{route('product.removeAllFromCart',['id'=>$product['item']['id']])}}">Sterge
                                 </a>
 
                             </li>
@@ -84,7 +84,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
 
-{{--                <a type="button" class="btn btn-success" href="{{route('checkout')}}">Checkout</a>--}}
+                <a type="button" class="btn btn-success" href="{{route('checkout')}}">Checkout</a>
 
             </div>
         </div>
