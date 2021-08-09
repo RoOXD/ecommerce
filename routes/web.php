@@ -34,6 +34,17 @@ Route::get('/add-to-cart/{id}', [
     'uses' => 'ProductController@getAddToCart',
     'as' => 'product.addToCart'
 ]);
+
+Route::get('/remove-from-cart/{id}', [
+    'uses' => 'ProductController@getRemoveFromCart',
+    'as' => 'product.removeFromCart'
+]);
+
+Route::get('/remove-all-from-cart/{id}', [
+    'uses' => 'ProductController@getRemoveAllFromCart',
+    'as' => 'product.removeAllFromCart'
+]);
+
 Route::get('/shopping-cart', [
     'uses' => 'ProductController@getCart',
     'as' => 'product.shoppingCart'

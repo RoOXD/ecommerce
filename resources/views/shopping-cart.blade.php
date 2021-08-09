@@ -39,19 +39,33 @@
     </div>
 
     <h1 class="card-title">Cos de cumparaturi</h1>
-    @if(Session::has('cart'))
+    @if(Session::has('cart') and $totalPrice!=0)
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <ul class="list-group">
                     @foreach($products as $product)
-                        <li class="list-group-item">
-                            <strong>{{$product['item']['name']}}</strong>
-                            <button type="button" class="btn btn-info" name="inc-btn">+</button>
-                            <span class="badge-pill">{{$product['qty']}} x buc</span>
-                            <button type="button" class="btn btn-info" name="dec-btn">-</button>
-                            <span class="label label-success">{{$product['price']}} RON</span>
-                            <button type="button" class="btn btn-info" name="del-btn">Sterge</button>
-                        </li>
+                        @if($product['qty']>0)
+                            <li class="list-group-item">
+                                <strong>{{$product['item']['name']}}</strong>
+
+                                <button type="button" class="btn btn-info" name="inc-btn"><a
+                                        href="{{route('product.addToCart',['id'=>$product['item']['id']])}}">+</a>
+                                </button>
+
+                                <span class="badge-pill">{{$product['qty']}} x buc</span>
+
+                                <button type="button" class="btn btn-info" name="dec-btn"><a
+                                        href="{{route('product.removeFromCart',['id'=>$product['item']['id']])}}">-</a>
+                                </button>
+
+                                <span class="label label-success">{{$product['price']}} RON</span>
+
+                                <button type="button" class="btn btn-info" name="del-btn"><a
+                                        href="{{route('product.removeAllFromCart',['id'=>$product['item']['id']])}}">Sterge</a>
+                                </button>
+
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
@@ -67,7 +81,7 @@
                 <button type="button" class="btn btn-success">Checkout</button>
             </div>
         </div>
-    @else
+    @elseif(!Session::has('cart') or $totalPrice==0)
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <h2>Nu exista produse in cos!</h2>

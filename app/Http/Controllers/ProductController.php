@@ -44,6 +44,26 @@ class ProductController extends Controller
         return Redirect::back()->with('message', 'Adaugat!');
     }
 
+    public function getRemoveFromCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($product, $product->id);
+        $request->session()->put('cart', $cart);
+        return Redirect::back()->with('message', 'Sters!');
+    }
+
+    public function getRemoveAllFromCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeAll($product, $product->id);
+        $request->session()->put('cart', $cart);
+        return Redirect::back()->with('message', 'Sters!');
+    }
+
     public function getCart()
     {
         if (!Session::has('cart')) {
