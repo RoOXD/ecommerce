@@ -19,7 +19,7 @@
         {{--        <a href="#search">Login</a>--}}
         <a href="{{route('product.shoppingCart')}}">
             Cos de cumparaturi
-            <span class="badge badge-secondary">{{Session::has('cart')? Session::get('cart')->totalQty:''}}</span>
+            <span class="badge badge-secondary" >{{Session::has('cart') ? Session::get('cart')->totalQty:''}}</span>
         </a>
     </div>
 </div>

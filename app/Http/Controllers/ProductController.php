@@ -71,7 +71,16 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+        return view('shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty'=>$cart->totalQty]);
     }
 
+    public function getCheckout(){
+        if (!Session::has('cart')) {
+            return view('shopping-cart');
+        }
+        $oldCart=Session::get('cart');
+        $cart=new Cart($oldCart);
+        $total=$cart->totalPrice;
+        return view('checkout',['total'=>$total]);
+    }
 }

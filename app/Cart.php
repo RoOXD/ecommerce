@@ -61,7 +61,5 @@ class Cart
         $this->items[$id] = $storedItem;
         $this->totalPrice -= $oldQty * $item->price;
         $this->totalQty -= $oldQty;
-
     }
-
 }
