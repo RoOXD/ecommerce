@@ -25,7 +25,6 @@
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
             <h1>Finalizati comanda!</h1>
-            <h4>Totalul dumneavoastra: {{$total}} RON</h4>
             <form action="{{route('checkout')}}" method="post" id="checkout-form">
                 @csrf
                 <div class="row">
@@ -77,8 +76,9 @@
                 </div>
                 <hr>
                 <div>
-                    <p>Total de plata: {{$total}} RON</p>
+                    <h5>Total de plata: {{$total}} RON</h5>
                 </div>
+                <hr>
                 <button type="submit" class="btn btn-success">Comanda</button>
             </form>
         </div>
