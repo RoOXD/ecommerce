@@ -27,17 +27,18 @@
             <h1>Finalizati comanda!</h1>
             <h4>Totalul dumneavoastra: {{$total}} RON</h4>
             <form action="{{route('checkout')}}" method="post" id="checkout-form">
+                @csrf
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="name">Nume</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" class="form-control" required name="name">
                         </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <label for="adress">Adresa</label>
-                            <input type="text" id="adress" class="form-control" required>
+                            <label for="address">Adresa</label>
+                            <input type="text" id="address" class="form-control" required name="address">
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
@@ -74,7 +75,10 @@
                         </div>
                     </div>
                 </div>
-                {{csrf_field()}}
+                <hr>
+                <div>
+                    <p>Total de plata: {{$total}} RON</p>
+                </div>
                 <button type="submit" class="btn btn-success">Comanda</button>
             </form>
         </div>

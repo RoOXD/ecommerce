@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -85,11 +86,21 @@ class ProductController extends Controller
         return view('checkout', ['total' => $total]);
     }
 
-    public function postCheckout()
+    public function postCheckout(Request $request)
     {
         if (!Session::has('cart')) {
             return redirect('/');
         }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $order = new Order();
+        $order->name = $request->input('name');
+        $order->cart = serialize($cart);
+        $order->address = $request->input('address');
+
+        $params = $order->toArray();
+
+        Order::create($params);
 
         Session::forget('cart');
 
