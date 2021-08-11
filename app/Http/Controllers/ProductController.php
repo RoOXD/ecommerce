@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Cart;
 use App\Order;
 use App\Product;
@@ -95,12 +96,12 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         $order = new Order();
         $order->name = $request->input('name');
-        $order->cart = serialize($cart);
+        $order->cart = base64_encode(serialize($cart));
         $order->address = $request->input('address');
-
-        $params = $order->toArray();
-
-        Order::create($params);
+        Auth::user()->orders()->save($order);
+//        $params = $order->toArray();
+//
+//        Order::create($params);
 
         Session::forget('cart');
 

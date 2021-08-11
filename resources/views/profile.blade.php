@@ -84,11 +84,34 @@
     </style>
     <x-nav-component></x-nav-component>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-8 col-md-offset-2">
             <h1>
                 Contul meu.
             </h1>
+            <hr>
+            <h2>Comenzi</h2>
+            <hr>
+            @foreach($orders as $order)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>ID comanda: {{$order->id}}</strong>
+                        <ul class="list-group">
+                            @foreach($order->cart->items as $item)
+                                <li class="list-group-item">
 
+                                    <strong>{{$item['item']['name']}}</strong>|{{$item['qty']}} Buc
+                                    <span class="badge">{{ $item['price'] }} RON</span>
+
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <strong>Total: {{$order->cart->totalPrice}}</strong>
+                    </div>
+                </div>
+                <hr>
+            @endforeach
         </div>
     </div>
 @endsection

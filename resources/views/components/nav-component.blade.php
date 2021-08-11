@@ -24,6 +24,7 @@
             <a href="/signup">Inregistrare</a>
             <a href="/signin">Autentificare</a>
         @endif
+
         <a href="{{route('product.shoppingCart')}}">
             Cos de cumparaturi
             <span class="badge badge-secondary">{{Session::has('cart') ? Session::get('cart')->totalQty:''}}</span>

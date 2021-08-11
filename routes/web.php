@@ -20,9 +20,9 @@ Route::get('/', function () {
 });
 Route::get('/', [ProductController::class, 'show']);
 
-Route::get('/admin', function () {
+Route::get('/admin', ['middleware' => 'admin', function () {
     return view('admin');
-});
+}]);
 Route::post('/admin', [ProductController::class, 'store']);
 
 Route::get('/detail/{prod}', function ($id) {
@@ -60,11 +60,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/checkout', [
     'uses' => 'ProductController@getCheckout',
-    'as' => 'checkout'
+    'as' => 'checkout',
+    'middleware' => 'auth'
 ]);
 Route::post('/checkout', [
     'uses' => 'ProductController@postCheckout',
-    'as' => 'checkout'
+    'as' => 'checkout',
+    'middleware' => 'auth'
 ]);
 
 Route::get('/signup', [

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -50,12 +52,20 @@ class UserController extends Controller
 
     public function getProfile()
     {
-        return view('profile');
+        $orders = Auth::user()->orders;
+        $orders->transform(function ($order, $key) {
+            $order->cart = unserialize(base64_decode($order->cart));
+            return $order;
+        });
+        return view('profile', ['orders' => $orders]);
     }
 
     public function getLogout()
     {
         Auth::logout();
+        if (Session::has('cart')) {
+            Session::forget('cart');
+        }
         return redirect('/');
     }
 }
