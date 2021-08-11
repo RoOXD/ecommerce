@@ -16,7 +16,14 @@
 <div class="topnav">
     <a href="/">Pagina principala</a>
     <div class="topnav-right">
-        {{--        <a href="#search">Login</a>--}}
+
+        @if(Auth::check())
+            <a href="/user/profile">Contul meu</a>
+            <a href="/user/logout">Deconectare</a>
+        @else
+            <a href="/signup">Inregistrare</a>
+            <a href="/signin">Autentificare</a>
+        @endif
         <a href="{{route('product.shoppingCart')}}">
             Cos de cumparaturi
             <span class="badge badge-secondary">{{Session::has('cart') ? Session::get('cart')->totalQty:''}}</span>
