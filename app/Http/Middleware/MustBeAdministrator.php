@@ -11,13 +11,13 @@ class MustBeAdministrator
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check()||auth()->user()->name!='admin'){
+        if (!Auth::check() || auth()->user()->name != 'admin') {
             abort(403);
         }
         return $next($request);

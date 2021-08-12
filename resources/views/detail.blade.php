@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         * {
+            padding-left: 10px;
             box-sizing: border-box;
             font-family: Calibri;
         }
 
-
         .column {
             float: left;
-            width: 25%;
+            width: 50rem;
             padding: 5px;
         }
 
@@ -100,6 +100,13 @@
         </div>
     </div>
 </div>
-
+<hr>
+<div>
+    <h3>Opiniile cumparatorilor</h3>
+    <hr>
+    @foreach($product->comments as $comment)
+        <x-comment :comment="$comment"></x-comment>
+    @endforeach
+</div>
 </body>
 </html>
