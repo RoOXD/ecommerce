@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function show()
     {
-        $data = Product::all();
+        $data = Product::paginate(12);
         return view('index', ['products' => $data]);
     }
 

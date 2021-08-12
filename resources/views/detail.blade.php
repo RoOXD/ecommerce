@@ -102,6 +102,20 @@
 </div>
 <hr>
 <div>
+    <div class="row">
+        <div class="column" style="background-color:white; padding: 3px">
+            <form method="post" action="/detail/{{$product->id}}/comments">
+                @csrf
+                <div class="form-group" style="padding: 5px">
+                    <h3>Adauga un review</h3>
+                    <textarea class="form-control" name="body"
+                              placeholder="Ajuta-i pe ceilalti cumparatori cu experienta ta!"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Adauga</button>
+            </form>
+        </div>
+    </div>
+    <hr>
     <h3>Opiniile cumparatorilor</h3>
     <hr>
     @foreach($product->comments as $comment)

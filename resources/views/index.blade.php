@@ -123,8 +123,10 @@
                 </a>
             </div>
         </div>
-
     @endforeach
+    <div style="padding: 10px; float: right">
+        {{$products->links()}}
+    </div>
 </div>
 
 </body>

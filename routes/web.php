@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Product;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -104,3 +105,5 @@ Route::get('user/logout', [
     'as' => 'user.logout',
     'middleware' => 'auth'
 ]);
+
+Route::post('/detail/{prod}/comments', [CommentController::class, 'store'])->middleware('auth');
