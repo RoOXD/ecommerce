@@ -20,10 +20,10 @@ Route::get('/', function () {
 });
 Route::get('/', [ProductController::class, 'show']);
 
-Route::get('/admin', ['middleware' => 'admin', function () {
+Route::get('/admin', function () {
     return view('admin');
-}]);
-Route::post('/admin', [ProductController::class, 'store']);
+})->middleware('admin');
+Route::post('/admin', [ProductController::class, 'store'])->middleware('admin');
 
 Route::get('/detail/{prod}', function ($id) {
     return view('detail', [
