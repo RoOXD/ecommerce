@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 Route::get('/', [ProductController::class, 'show']);
 
 Route::get('/admin', function () {
